@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Vnext_RewardPoints::erwardopints" title="Reward Points" module="Vnext_RewardPoints" sortOrder="150"
+             parent="Magento_Backend::marketing" resource="Vnext_RewardPoints::contact"/>
+        <add id="Vnext_RewardPoints::earingrate_list" title="Earing Rate" translate="title" module="Vnext_RewardPoints"
+             parent="Vnext_RewardPoints::erwardopints"
+             sortOrder="10" action="point/earningrate/index" resource="Vnext_RewardPoints::earningrate_list"/>
+        <add id="Vnext_RewardPoints::spendingrate_list" title="Spending Rate" translate="title"
+             module="Vnext_RewardPoints" parent="Vnext_RewardPoints::erwardopints"
+             sortOrder="10" action="point/spendingrate/index" resource="Vnext_RewardPoints::spendingrate_list"/>
+        <add id="Vnext_RewardPoints::customerpoint" title="Customer Point" translate="title"
+             module="Vnext_RewardPoints" parent="Magento_Customer::customer"
+             sortOrder="10" action="point/customerpoint/index" resource="Vnext_RewardPoints::customerpoint"/>
+        <add id="Vnext_RewardPoints::transaction" title="Transactions" translate="title"
+             module="Vnext_RewardPoints" parent="Vnext_RewardPoints::erwardopints"
+             sortOrder="10" action="point/transaction/index" resource="Vnext_RewardPoints::transaction"/>
+    </menu>
+</config>

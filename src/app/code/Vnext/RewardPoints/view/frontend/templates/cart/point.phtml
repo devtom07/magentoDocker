@@ -1,0 +1,74 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * @var \Vnext\RewardPoints\Block\Cart\Point $block
+ */
+
+// We should use strlen function because coupon code could be "0", converted to bool will lead to false
+$hasCouponCode = true;
+$array = $block->getPoint();
+$point = $array['point'];
+$point_spent = $array['point_spent'];
+?>
+<?php if ($block->getCustomerSession()->isLoggedIn()) : ?>
+<div class="block discount"
+     id="block-discount"
+     data-mage-init='{"collapsible":{"active": <?= $hasCouponCode ? 'true' : 'false' ?>, "openedState": "active", "saveState": false}}'
+>
+    <div class="title" data-role="title">
+        <strong id="block-discount-heading" role="heading"
+                aria-level="2"><?= $block->escapeHtml(__('Apply Point')) ?></strong>
+    </div>
+    <div class="content" data-role="content" aria-labelledby="block-discount-heading">
+        <div>
+            <p>Your points: <span><?php echo $point?></span></p>
+            <p>Your points: <span><?php echo $point_spent?></span></p>
+        </div>
+        <form id="discount-coupon-form"
+              action="<?= $block->escapeUrl($block->getUrl('rewardpoints/cart/pointPost')) ?>"
+              method="post"
+              data-mage-init='{"discountCode":{"couponCodeSelector": "#number_points",
+                                               "removeCouponSelector": "#remove-coupon",
+                                               "applyButton": "button.action.apply",
+                                               "cancelButton": "button.action.cancel"}}'>
+            <div class="fieldset coupon<?= $hasCouponCode ? ' applied' : '' ?>">
+                <input type="hidden" name="remove" id="remove-coupon" value="0"/>
+                <div class="field">
+                    <label for="number_points"
+                           class="label"><span><?= $block->escapeHtml(__('Enter number point')) ?></span></label>
+                    <div class="control">
+                        <input type="text"
+                               class="input-text"
+                               id="number_points"
+                               name="number_points"
+                               placeholder="<?= $block->escapeHtmlAttr(__('Enter number point')) ?>"
+                        />
+                    </div>
+                </div>
+                <div class="actions-toolbar">
+                    <div class="primary">
+                        <button class="action apply primary" type="button"
+                                value="<?= $block->escapeHtmlAttr(__('Apply Discount')) ?>">
+                            <span><?= $block->escapeHtml(__('Apply Discount')) ?></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <?php if (!$hasCouponCode) : ?>
+                <?= /* @noEscape */
+                $block->getChildHtml('captcha') ?>
+            <?php endif; ?>
+        </form>
+    </div>
+</div>
+<?php else : ?>
+    <div class="message info notlogged" id="review-form">
+        <div>
+            <?= $block->escapeHtml(__('Only registered users can write enter point. Please <a href="%1">Sign in</a> or <a href="%2">create an account</a>', $block->getLoginLink(), $block->getRegisterUrl()), ['a']) ?>
+        </div>
+    </div>
+<?php endif ?>

@@ -1,0 +1,145 @@
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">point_customerpoint_form.point_customerpoint_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Vnext\RewardPoints\Block\Adminhtml\Customerpoint\Edit\SaveButton"/>
+            <button name="back" class="Magento\Cms\Block\Adminhtml\Block\Edit\BackButton"/>
+        </buttons>
+        <namespace>point_customerpoint_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>point_customerpoint_form.point_customerpoint_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="point_customerpoint_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="point/customerpoint/save"/>
+        </settings>
+        <dataProvider class="Vnext\RewardPoints\Model\Point\DataProvider" name="point_customerpoint_form_data_source">
+            <settings>
+                <requestFieldName>entity_id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label/>
+        </settings>
+        <field name="entity_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">point</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>entity_id</dataScope>
+            </settings>
+        </field>
+        <field name="text_title_point" formElement="input" sortOrder="8">
+            <settings>
+                <elementTmpl>ui/form/element/text</elementTmpl>
+                <label translate="true"> Balance  Information</label>
+            </settings>
+        </field>
+
+        <field name="text_customer_point" formElement="input" sortOrder="10">
+            <settings>
+                <elementTmpl>ui/form/element/text</elementTmpl>
+                <label translate="true">Customer Point</label>
+                <imports>
+                    <link name="value">${ $.provider }:data.point</link>
+                </imports>
+            </settings>
+        </field>
+
+        <field name="text_earning_point" formElement="input" sortOrder="10">
+            <settings>
+                <elementTmpl>ui/form/element/text</elementTmpl>
+                <label translate="true">Earning Point</label>
+                <imports>
+                    <link name="value">${ $.provider }:data.point_earning</link>
+                </imports>
+            </settings>
+        </field>
+        <field name="text_spent_point" formElement="input" sortOrder="10">
+            <settings>
+                <elementTmpl>ui/form/element/text</elementTmpl>
+                <label translate="true">Spent Point</label>
+                <imports>
+                    <link name="value">${ $.provider }:data.point_spent</link>
+                </imports>
+            </settings>
+        </field>
+        <field name="text_title_update" formElement="input" sortOrder="13">
+            <settings>
+                <elementTmpl>ui/form/element/text</elementTmpl>
+                <label translate="true">Update Balance</label>
+            </settings>
+        </field>
+        <field name="point"  formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">block</item>
+                    <item name="cols" xsi:type="number">15</item>
+                    <item name="rows" xsi:type="number">5</item>
+                    <item name="dataType" translate="true" xsi:type="string">number</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <label translate="true">Point</label>
+                <dataScope>point</dataScope>
+            </settings>
+        </field>
+        <field name="comment">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="cols" xsi:type="number">15</item>
+                    <item name="rows" xsi:type="number">5</item>
+                    <item name="label" translate="true" xsi:type="string">Comment</item>
+                    <item name="dataType" translate="true" xsi:type="string">text</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <visible>true</visible>
+            </settings>
+        </field>
+        <field name="expiration_date" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">some_source</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="validate-date" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Expiration Date</label>
+                <visible>true</visible>
+                <dataScope>expiration_date</dataScope>
+            </settings>
+        </field>
+
+    </fieldset>
+</form>

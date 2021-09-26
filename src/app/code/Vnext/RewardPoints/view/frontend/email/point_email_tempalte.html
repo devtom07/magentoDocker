@@ -1,0 +1,5 @@
+{{template config_path="design/email/header_template"}}
+<h1>Notify Your Point</h1>
+<p class="greeting">{{trans "Hello <b>%administrator_name</b>," administrator_name=$administrator_name|row}}</p>
+<p class="greeting">{{trans "And Now Your Point : <b>%point</b>," point=$point|row}}</p>
+{{template config_path="design/email/footer_template"}}

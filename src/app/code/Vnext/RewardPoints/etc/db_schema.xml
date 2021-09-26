@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="earing_rate" resource="default" engine="innodb" comment="Earing Rates">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="int" name="website_id" nullable="true" comment="Website"/>
+        <column xsi:type="int" name="customer_group_id" nullable="true" comment="Customer Group"/>
+        <column xsi:type="int" name="money_spent" nullable="true" comment="Money Spent"/>
+        <column xsi:type="int" name="earing_points" nullable="true" comment="Earing Points"/>
+        <column xsi:type="int" name="priority" nullable="true" comment="Priority"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+    <table name="spending_rate" resource="default" engine="innodb" comment="Spending Rate">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="int" name="website_id" nullable="true" comment="Website"/>
+        <column xsi:type="int" name="customer_group_id" nullable="true" comment="Customer Group"/>
+        <column xsi:type="int" name="spending_point" nullable="true" comment="Spending Points"/>
+        <column xsi:type="int" name="discount_reserved" nullable="true" comment="Discount reserved"/>
+        <column xsi:type="int" name="priority" nullable="true" comment="Priority"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+    <table name="customer_point" resource="default" engine="innodb" comment="Customer Point">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="int"  name="point" nullable="true" comment="Point" />
+        <column xsi:type="int"  name="point_spent" nullable="true" comment="Point Spent" />
+        <column xsi:type="int"  name="point_earning" nullable="true" comment="Point Earning" />
+        <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="CUSTOMER ID"/>
+        <column xsi:type="varchar" name="customer_email" nullable="false" length="255" comment="Email"/>
+        <column xsi:type="varchar" name="expiration_date" nullable="false" length="255" comment="Expiration Date"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+    <table name="money_point" resource="default" engine="innodb" comment="Money Point">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="int"  name="quote_id" nullable="true" comment="Quote id" />
+        <column xsi:type="int"  name="money" nullable="true" comment="Money" />
+        <column xsi:type="int"  name="point" nullable="true" comment="Point" />
+        <column xsi:type="timestamp"  name="create_at" default="CURRENT_TIMESTAMP" nullable="true" comment="Create at" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+    <table name="transactions" resource="default" engine="innodb" comment="Money Point">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="varchar"  name="comment" nullable="true" comment="Comment" />
+        <column xsi:type="varchar"  name="amount" nullable="true" comment="Amount" />
+        <column xsi:type="varchar"  name="status" nullable="true" comment="Status" />
+        <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="CUSTOMER ID"/>
+        <column xsi:type="varchar" name="customer_email" nullable="false" length="255" comment="Email"/>
+        <column xsi:type="date"  name="expiration_date" nullable="true" comment="Expiration Date " />
+        <column xsi:type="timestamp"  name="create_at" default="CURRENT_TIMESTAMP" nullable="true" comment="Create at" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+
+</schema>

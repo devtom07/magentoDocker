@@ -1,0 +1,41 @@
+
+<div class="payment-option _collapsible opc-payment-additional discount-code"
+     data-bind="mageInit: {'collapsible':{'openedState': '_active'}}">
+    <div class="payment-option-title field choice" data-role="title">
+        <span class="action action-toggle" id="block-discount-heading" role="heading" aria-level="2">
+            <!-- ko i18n: 'Apply  Points'--><!-- /ko -->
+        </span>
+    </div>
+    <div class="payment-option-content" data-role="content">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <!-- ko if: isLoggedIn() -->
+        <form class="form form-discount" id="discount-form" data-mage-init='{"validation":{}}'>
+            <div class="payment-option-inner">
+                <div class="field">
+                    <label class="label" for="discount-code">
+                        <span data-bind="i18n: 'Enter discount code'"></span>
+                    </label>
+                    <div class="control">
+                        <div class="parent-form">
+                            <div class="form-items">
+                                <input type="text" id="search-example" class="input-text order-comment" name="order-comment" placeholder="Enter your point">
+                                <button class="action action-apply" type="submit" value="Apply Points" data-bind="click: getKeyword">
+                                    <span><!-- ko i18n: 'Apply Points'--><!-- /ko --></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ko foreach: getRegion('captcha') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!-- /ko -->
+        </form>
+        <!-- /ko -->
+        <!-- ko ifnot: isLoggedIn() -->
+        <!-- /ko -->
+    </div>
+</div>
+

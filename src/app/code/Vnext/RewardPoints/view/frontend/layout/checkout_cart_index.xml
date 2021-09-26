@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="checkout_cart_item_renderers"/>
+    <body>
+        <referenceContainer name="cart.summary" label="Cart Summary Container" htmlTag="div" htmlClass="cart-summary" after="-">
+            <block class="Vnext\RewardPoints\Block\Cart\Point" name="checkout.cart.point" as="point" after="checkout.cart.coupon" template="Vnext_RewardPoints::cart/point.phtml"/>
+        </referenceContainer>
+        <move element="checkout.cart.point" destination="cart.discount" />
+    </body>
+</page>

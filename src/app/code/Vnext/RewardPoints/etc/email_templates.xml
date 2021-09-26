@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="point_email_tempalte" label="Notice of update point" file="point_email_tempalte.html" type="html" module="Vnext_RewardPoints" area="frontend"/>
+    <template id="expiration_point_email_tempalte" label="Notice of expiration point" file="expiration_point_email_tempalte.html" type="html" module="Vnext_RewardPoints" area="frontend"/>
+</config>

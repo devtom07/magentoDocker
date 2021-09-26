@@ -1,0 +1,57 @@
+<?php
+/**
+ * My Points
+ *
+ * @copyright Copyright © 2021 Staempfli AG. All rights reserved.
+ * @author    juan.alonso@staempfli.com
+ */
+$data = $block->getViewModel();
+$point = $data->getDataPoint();
+$transaction = $data->getTransaction();
+?>
+<h1> My Points & Reward</h1>
+<div style="height: 500px">
+    <div style="width: 200px;height: 100px;background-color: #2ca02c;color: white;text-align: center;padding-top:50px;font-size:18px;">
+        Point : <?php echo $block->escapeHtml($point->getPoint()); ?>
+    </div>
+    <br>
+    <div style="width: 200px;height: 100px;background-color: #7eadd9;color: white;text-align: center;padding-top:50px;font-size:18px;">
+        Earning Point : <?php echo $block->escapeHtml($point->getPointEarning()); ?>
+    </div>
+    <br>
+    <div style="width: 200px;height: 100px;background-color: #00ade2;color: white;text-align: center;padding-top:50px;font-size:18px;">
+        Spent  Point : <?php echo $block->escapeHtml($point->getPointSpent()); ?>
+    </div>
+</div>
+
+<br>
+<h1>Transaction</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date</th>
+        <th scope="col">Comment</th>
+        <th scope="col">amount</th>
+        <th scope="col">expiration_date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    foreach ($transaction as $transactions): ?>
+    <tr>
+        <th scope="row"><?php echo $block->escapeHtml($transactions->getId()); ?></th>
+        <td><?php echo $block->escapeHtml($transactions->getCreateAt()); ?></td>
+        <td><?php echo $block->escapeHtml($transactions->getComment()); ?></td>
+        <td><?php echo $block->escapeHtml($transactions->getAmount()); ?></td>
+        <td><?php echo $block->escapeHtml($transactions->getExpirationDate()); ?></td>
+    </tr>
+    <?php endforeach; ?>
+
+    </tbody>
+</table>
+
+
+
+
+
